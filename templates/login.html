@@ -290,7 +290,8 @@ Secure
 
 document.addEventListener("DOMContentLoaded",function(){
 
-VanillaTilt.init(document.querySelector(".login-card"),{
+const card=document.querySelector(".glass-card");
+if(card){VanillaTilt.init(card,{
 
 max:12,
 
@@ -302,7 +303,7 @@ glare:true,
 
 scale:1.03
 
-});
+});}
 
 });
 

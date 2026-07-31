@@ -16,12 +16,15 @@ import os
 from datetime import datetime
 
 from model import predictor
+from create_db import create_database
 
 # ==========================================================
 # APPLICATION
 # ==========================================================
 
 app = Flask(__name__)
+
+create_database()
 
 app.secret_key = os.getenv(
     "SECRET_KEY",
