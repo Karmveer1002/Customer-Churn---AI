@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-title">
+
+    <h1>
+
+        Customer Dataset
+
+    </h1>
+
+    <p>
+
+        Browse and analyze customer records.
+
+    </p>
+
+</div>
+
+<div class="section">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2>
+
+Customer Records
+
+</h2>
+
+<div>
+
+<form
+
+action="{{ url_for('upload') }}"
+
+method="POST"
+
+enctype="multipart/form-data"
+
+class="d-flex">
+
+<input
+
+type="file"
+
+class="form-control"
+
+name="file"
+
+required>
+
+<button
+
+class="btn btn-primary ms-2">
+
+Upload
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<div class="row mb-4">
+
+<div class="col-md-4">
+
+<input
+
+id="searchInput"
+
+type="text"
+
+class="form-control"
+
+placeholder="Search customer...">
+
+</div>
+
+<div class="col-md-3">
+
+<select
+
+class="form-control">
+
+<option>
+
+All Customers
+
+</option>
+
+<option>
+
+Active
+
+</option>
+
+<option>
+
+Churn
+
+</option>
+
+</select>
+
+</div>
+
+<div class="col-md-2">
+
+<button
+
+class="btn btn-success w-100">
+
+Export
+
+</button>
+
+</div>
+
+</div>
+
+<div class="table-wrapper">
+
+<table
+
+id="customerTable"
+
+class="table table-hover">
+
+<thead>
+
+<tr>
+
+{% for col in columns %}
+
+<th>
+
+{{ col }}
+
+</th>
+
+{% endfor %}
+</tr>
+
+</thead>
+
+<tbody>
+
+{% if data %}
+
+{% for row in data %}
+
+<tr>
+
+{% for item in row %}
+
+<td>
+
+{{ item }}
+
+</td>
+
+{% endfor %}
+
+</tr>
+
+{% endfor %}
+
+{% else %}
+
+<tr>
+
+<td colspan="{{ columns|length }}">
+
+<div class="text-center p-5">
+
+<i class="fa-solid fa-database fa-3x text-secondary mb-3"></i>
+
+<h4>
+
+No Dataset Found
+
+</h4>
+
+<p>
+
+Upload a customer dataset to begin analysis.
+
+</p>
+
+</div>
+
+</td>
+
+</tr>
+
+{% endif %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ===========================
+DATASET SUMMARY
+=========================== -->
+
+<div class="dashboard-row mt-4">
+
+<div class="card">
+
+<h3>
+
+Total Records
+
+</h3>
+
+<div class="value">
+
+{{ data|length }}
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Columns
+
+</h3>
+
+<div class="value">
+
+{{ columns|length }}
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Dataset
+
+</h3>
+
+<div class="value text-success">
+
+Loaded
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Status
+
+</h3>
+
+<div class="value text-primary">
+
+Ready
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const searchInput = document.getElementById("searchInput");
+
+if(searchInput){
+
+searchInput.addEventListener("keyup",function(){
+
+let filter=this.value.toUpperCase();
+
+let table=document.getElementById("customerTable");
+
+let tr=table.getElementsByTagName("tr");
+
+for(let i=1;i<tr.length;i++){
+
+let show=false;
+
+let td=tr[i].getElementsByTagName("td");
+
+for(let j=0;j<td.length;j++){
+
+if(td[j]){
+
+let txt=td[j].textContent||td[j].innerText;
+
+if(txt.toUpperCase().indexOf(filter)>-1){
+
+show=true;
+
+}
+
+}
+
+}
+
+tr[i].style.display=show?"":"none";
+
+}
+
+});
+
+}
+
+</script>
+
+{% endblock %}

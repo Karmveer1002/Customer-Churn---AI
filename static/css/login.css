@@ -1,0 +1,252 @@
+/* =========================
+   LOGIN PAGE
+========================= */
+
+html,
+body{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+
+.login-wrapper{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    margin:0;
+
+    justify-content:center;
+
+    background:linear-gradient(-45deg,#0f172a,#1d4ed8,#2563eb,#4f46e5);
+
+    background-size:400% 400%;
+
+    animation:gradientBG 12s ease infinite;
+
+}
+
+@keyframes gradientBG{
+
+    0%{background-position:0% 50%;}
+
+    50%{background-position:100% 50%;}
+
+    100%{background-position:0% 50%;}
+
+}
+
+.login-wrapper .container-fluid{
+
+    height:100vh;
+
+    padding:0;
+
+}
+
+.login-wrapper .row{
+
+    min-height:100vh;
+
+    align-items:center;
+
+}
+
+/* LEFT SIDE */
+
+.hero-content{
+    color: white;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+}
+
+
+.hero-content h1{
+
+    font-size:56px;
+
+    font-weight:700;
+
+    line-height:1.1;
+
+    margin-bottom:20px;
+
+
+}
+
+.hero-content h3{
+
+    margin-top:15px;
+
+}
+
+.hero-text{
+
+    margin-top:25px;
+
+    font-size:20px;
+
+    opacity:.9;
+
+}
+
+.hero-stats{
+
+    display:flex;
+
+    gap:20px;
+
+    margin-top:40px;
+
+}
+
+.stat-card{
+
+    text-align:center;
+
+    color:white;
+
+}
+
+.stat-card h2{
+
+    font-size:46px;
+
+    font-weight:700;
+
+}
+
+/* LOGIN CARD */
+
+.glass-card{
+
+    width:430px;
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:35px;
+
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+
+    transition:.35s;
+
+}
+
+.glass-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.login-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-size:38px;
+
+}
+
+.premium-btn{
+
+    background:#4f46e5;
+
+    color:white;
+
+    border:none;
+
+    height:52px;
+
+    border-radius:12px;
+
+}
+
+.premium-btn:hover{
+
+    background:#3730a3;
+
+}
+
+.feature-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:20px;
+
+    text-align:center;
+
+}
+
+.feature-box i{
+
+    font-size:28px;
+
+}
+
+.form-control{
+
+    height:48px;
+
+}
+
+.col-lg-7{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.col-lg-5{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.hero-content{
+    width:100%;
+    max-width:650px;
+}
+
+.glass-card{
+    width:430px;
+}
+.container-fluid{
+    padding:0 !important;
+    margin:0 !important;
+}
+
+.row{
+    margin:0 !important;
+}
+
+.col-lg-7,
+.col-lg-5{
+    padding:0 !important;
+}

@@ -1,0 +1,553 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-title">
+
+    <h1>
+        AI Customer Churn Prediction
+    </h1>
+
+    <p>
+        Analyze customer details using the trained Random Forest AI model.
+    </p>
+
+</div>
+
+<div class="row">
+
+    <!-- =========================
+            INPUT FORM
+    ========================== -->
+
+    <div class="col-lg-8">
+
+        <div class="section">
+
+            <h2>
+
+                Customer Information
+
+            </h2>
+
+            <form method="POST">
+
+                <div class="row">
+
+                    <!-- Credit Score -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Credit Score
+
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="credit_score"
+                            placeholder="650"
+                            min="300"
+                            max="900"
+                            required>
+
+                    </div>
+
+                    <!-- Geography -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Geography
+
+                        </label>
+
+                        <select
+                            class="form-control"
+                            name="geography"
+                            required>
+
+                            <option value="France">France</option>
+
+                            <option value="Germany">Germany</option>
+
+                            <option value="Spain">Spain</option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Gender -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Gender
+
+                        </label>
+
+                        <select
+                            class="form-control"
+                            name="gender"
+                            required>
+
+                            <option value="Male">
+
+                                Male
+
+                            </option>
+
+                            <option value="Female">
+
+                                Female
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Age -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Age
+
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="age"
+                            placeholder="35"
+                            required>
+
+                    </div>
+
+                    <!-- Tenure -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Tenure
+
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="tenure"
+                            placeholder="5"
+                            required>
+
+                    </div>
+
+                    <!-- Balance -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Balance
+
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            class="form-control"
+                            name="balance"
+                            placeholder="50000"
+                            required>
+
+                    </div>
+
+                    <!-- Products -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Number Of Products
+
+                        </label>
+
+                        <select
+                            class="form-control"
+                            name="products"
+                            required>
+
+                            <option value="1">1</option>
+
+                            <option value="2">2</option>
+
+                            <option value="3">3</option>
+
+                            <option value="4">4</option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Credit Card -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Has Credit Card
+
+                        </label>
+
+                        <select
+                            class="form-control"
+                            name="card"
+                            required>
+
+                            <option value="1">
+
+                                Yes
+
+                            </option>
+
+                            <option value="0">
+
+                                No
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Active -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Active Member
+
+                        </label>
+
+                        <select
+                            class="form-control"
+                            name="active"
+                            required>
+
+                            <option value="1">
+
+                                Yes
+
+                            </option>
+
+                            <option value="0">
+
+                                No
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Salary -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Estimated Salary
+
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            class="form-control"
+                            name="salary"
+                            placeholder="75000"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+
+                    <button
+                        class="btn btn-primary btn-lg">
+
+                        <i class="fa-solid fa-brain"></i>
+
+                        Predict Customer
+
+                    </button>
+
+                    <button
+                        type="reset"
+                        class="btn btn-outline-secondary btn-lg ms-2">
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+            RESULT PANEL
+    ========================== -->
+
+    <div class="col-lg-4">
+
+        <div class="section">
+
+            <h2>
+
+                AI Prediction
+
+            </h2>
+            {% if prediction %}
+
+<div class="text-center mt-4">
+
+    {% if prediction.color == "danger" %}
+
+    <span class="badge bg-danger fs-5">
+
+        HIGH RISK
+
+    </span>
+
+    {% elif prediction.color == "warning" %}
+
+    <span class="badge bg-warning text-dark fs-5">
+
+        MEDIUM RISK
+
+    </span>
+
+    {% else %}
+
+    <span class="badge bg-success fs-5">
+
+        LOW RISK
+
+    </span>
+
+    {% endif %}
+
+</div>
+
+<div class="mt-4">
+
+    <h5>
+
+        Churn Probability
+
+    </h5>
+
+    <div class="progress" style="height:30px">
+
+    <div
+        class="progress-bar bg-{{ prediction.color }}"
+        role="progressbar">
+
+        {{ prediction.probability }}%
+
+    </div>
+
+</div>
+
+</div>
+
+<div class="card shadow-sm mt-4">
+
+    <div class="card-body">
+
+        <h4 class="mb-3">
+
+            Prediction Result
+
+        </h4>
+
+        <table class="table table-bordered">
+
+            <tr>
+
+                <th>Prediction</th>
+
+                <td>
+
+                    {% if prediction.prediction == 1 %}
+
+                        Customer Likely To Churn
+
+                    {% else %}
+
+                        Customer Likely To Stay
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>Risk Level</th>
+
+                <td>
+
+                    {{ prediction.risk }}
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>Probability</th>
+
+                <td>
+
+                    {{ prediction.probability }}%
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div class="card shadow-sm mt-4">
+
+    <div class="card-body">
+
+        <h4>
+
+            AI Recommendation
+
+        </h4>
+
+        <div class="alert alert-{{ prediction.color }} mt-3">
+
+            {{ prediction.recommendation }}
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card shadow-sm mt-4">
+
+    <div class="card-body">
+
+        <h4>
+
+            Interpretation
+
+        </h4>
+
+        <ul>
+
+            <li>
+
+                <strong>80% or above</strong> → Immediate customer retention recommended.
+
+            </li>
+
+            <li>
+
+                <strong>50% - 79%</strong> → Monitor and send personalized offers.
+
+            </li>
+
+            <li>
+
+                <strong>Below 50%</strong> → Customer appears stable.
+
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% else %}
+
+<div class="text-center mt-5">
+
+    <i class="fa-solid fa-robot fa-5x text-primary mb-4"></i>
+
+    <h4>
+
+        AI Prediction Ready
+
+    </h4>
+
+    <p>
+
+        Fill in the customer information on the left and click
+        <strong>Predict Customer</strong> to generate an AI-powered churn prediction.
+
+    </p>
+
+</div>
+
+<div class="card shadow-sm mt-4">
+
+    <div class="card-body">
+
+        <h5>
+
+            Required Inputs
+
+        </h5>
+
+        <ul>
+
+            <li>Credit Score</li>
+            <li>Geography</li>
+            <li>Gender</li>
+            <li>Age</li>
+            <li>Tenure</li>
+            <li>Balance</li>
+            <li>Number of Products</li>
+            <li>Credit Card Status</li>
+            <li>Active Member</li>
+            <li>Estimated Salary</li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

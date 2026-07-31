@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block authcontent %}
+
+<div class="container-fluid p-0 vh-100">
+
+<div class="row g-0 vh-100">
+
+<!-- LEFT PANEL -->
+
+<div class="col-lg-7 d-none d-lg-flex align-items-center justify-content-center"
+
+style="background:linear-gradient(135deg,#4F46E5,#1E3A8A);color:white;">
+
+<div class="text-center">
+
+<i class="fa-solid fa-user-plus fa-6x mb-4"></i>
+
+<h1 class="display-4 fw-bold">
+
+Join ChurnAI
+
+</h1>
+
+<p class="lead mt-4">
+
+Create your account and start analyzing customer churn with powerful AI-driven insights.
+
+</p>
+
+<div class="row mt-5">
+
+<div class="col-md-4">
+
+<h2>100%</h2>
+
+<p>Secure</p>
+
+</div>
+
+<div class="col-md-4">
+
+<h2>AI</h2>
+
+<p>Powered</p>
+
+</div>
+
+<div class="col-md-4">
+
+<h2>Cloud</h2>
+
+<p>Dashboard</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- RIGHT PANEL -->
+
+<div class="col-lg-5 d-flex align-items-center justify-content-center">
+
+<div class="card shadow-lg p-5"
+
+style="width:450px;border-radius:25px;">
+
+<div class="text-center">
+
+<i class="fa-solid fa-user-shield fa-5x text-primary mb-3"></i>
+
+<h2>
+
+Create Account
+
+</h2>
+
+<p class="text-muted">
+
+Register to continue
+
+</p>
+
+</div>
+
+<form method="POST">
+
+<div class="mb-3">
+
+<label>Username</label>
+
+<input
+type="text"
+name="username"
+class="form-control"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Password</label>
+
+<input
+type="password"
+name="password"
+class="form-control"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Confirm Password</label>
+
+<input
+type="password"
+class="form-control"
+required>
+
+</div>
+
+<button class="btn btn-primary w-100">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Create Account
+
+</button>
+
+<div class="text-center mt-4">
+
+Already have an account?
+
+<a href="{{ url_for('login') }}">
+
+Login
+
+</a>
+
+</div>
+
+</form>
+
+<div class="mt-5">
+
+<hr>
+
+<h5 class="mb-3 text-center">
+
+Why Choose ChurnAI?
+
+</h5>
+
+<div class="row text-center">
+
+<div class="col-4">
+
+<i class="fa-solid fa-chart-line fa-2x text-primary mb-2"></i>
+
+<p class="small">
+
+Analytics
+
+</p>
+
+</div>
+
+<div class="col-4">
+
+<i class="fa-solid fa-brain fa-2x text-success mb-2"></i>
+
+<p class="small">
+
+AI Model
+
+</p>
+
+</div>
+
+<div class="col-4">
+
+<i class="fa-solid fa-shield-halved fa-2x text-danger mb-2"></i>
+
+<p class="small">
+
+Secure
+
+</p>
+
+</div>
+
+</div>
+
+<div class="alert alert-info mt-4">
+
+<i class="fa-solid fa-circle-info"></i>
+
+Your account will allow you to:
+
+<ul class="mt-2 mb-0">
+
+<li>Predict customer churn</li>
+
+<li>Upload customer datasets</li>
+
+<li>Analyze customer behavior</li>
+
+<li>Generate AI insights</li>
+
+</ul>
+
+</div>
+
+<div class="text-center mt-4">
+
+<small class="text-muted">
+
+Already trusted by businesses worldwide.
+
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

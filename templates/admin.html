@@ -1,0 +1,480 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-title">
+
+    <h1>
+
+        Admin Dashboard
+
+    </h1>
+
+    <p>
+
+        Manage users, datasets and monitor system health.
+
+    </p>
+
+</div>
+
+<!-- =====================================
+ADMIN SUMMARY
+====================================== -->
+
+<div class="card-grid">
+
+    <div class="card success">
+
+        <h3>
+
+            Total Users
+
+        </h3>
+
+        <div class="value">
+
+            {{ users|length }}
+
+        </div>
+
+        <div class="change">
+
+            Registered Users
+
+        </div>
+
+    </div>
+
+    <div class="card success">
+
+        <h3>
+
+            Dataset
+
+        </h3>
+
+        <div class="value">
+
+            Ready
+
+        </div>
+
+        <div class="change">
+
+            Uploaded
+
+        </div>
+
+    </div>
+
+    <div class="card warning">
+
+        <h3>
+
+            Prediction Engine
+
+        </h3>
+
+        <div class="value">
+
+            Active
+
+        </div>
+
+        <div class="change">
+
+            Online
+
+        </div>
+
+    </div>
+
+    <div class="card danger">
+
+        <h3>
+
+            Database
+
+        </h3>
+
+        <div class="value">
+
+            Connected
+
+        </div>
+
+        <div class="change">
+
+            SQLite
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+USER MANAGEMENT
+====================================== -->
+
+<div class="section">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2>
+
+Registered Users
+
+</h2>
+
+<button class="btn btn-primary">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Add User
+
+</button>
+
+</div>
+
+<div class="table-wrapper">
+
+<table class="table table-hover">
+
+<thead>
+
+<tr>
+
+<th>
+
+ID
+
+</th>
+
+<th>
+
+Username
+
+</th>
+
+<th>
+
+Role
+
+</th>
+
+<th>
+
+Status
+
+</th>
+
+<th>
+
+Action
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for user in users %}
+
+<tr>
+
+<td>
+
+{{ user["id"] }}
+
+</td>
+
+<td>
+
+{{ user["username"] }}
+
+</td>
+
+<td>
+
+Administrator
+
+</td>
+
+<td>
+
+<span class="badge-low">
+
+Active
+
+</span>
+
+</td>
+
+<td>
+
+<button class="btn btn-sm btn-outline-danger">
+
+<i class="fa-solid fa-trash"></i>
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<!-- =====================================
+SYSTEM STATUS
+====================================== -->
+
+<div class="dashboard-row mt-4">
+
+    <div class="section">
+
+        <h2>
+
+            System Status
+
+        </h2>
+
+        <table class="table">
+
+            <tr>
+
+                <th>Application</th>
+
+                <td class="text-success">
+
+                    Running
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>Database</th>
+
+                <td class="text-success">
+
+                    Connected
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>Prediction Engine</th>
+
+                <td class="text-success">
+
+                    Online
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>Dataset</th>
+
+                <td class="text-success">
+
+                    Loaded
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div class="section">
+
+        <h2>
+
+            Server Information
+
+        </h2>
+
+        <table class="table">
+
+            <tr>
+
+                <th>Framework</th>
+
+                <td>
+
+                    Flask
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>Database</th>
+
+                <td>
+
+                    SQLite
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>Charts</th>
+
+                <td>
+
+                    Chart.js
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>Version</th>
+
+                <td>
+
+                    2.0
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+QUICK ACTIONS
+====================================== -->
+
+<div class="section mt-4">
+
+    <h2>
+
+        Quick Actions
+
+    </h2>
+
+    <div class="row mt-4">
+
+        <div class="col-md-3">
+
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary w-100">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <a href="{{ url_for('table') }}" class="btn btn-success w-100">
+
+                <i class="fa-solid fa-table"></i>
+
+                Dataset
+
+            </a>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <a href="{{ url_for('predict') }}" class="btn btn-warning w-100 text-white">
+
+                <i class="fa-solid fa-brain"></i>
+
+                Prediction
+
+            </a>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <a href="{{ url_for('insights') }}" class="btn btn-info w-100 text-white">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Analytics
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+SYSTEM LOGS
+====================================== -->
+
+<div class="section mt-4">
+
+    <h2>
+
+        Recent Activity
+
+    </h2>
+
+    <ul class="list-group mt-3">
+
+        <li class="list-group-item">
+
+            ✅ Dataset uploaded successfully.
+
+        </li>
+
+        <li class="list-group-item">
+
+            ✅ Prediction engine initialized.
+
+        </li>
+
+        <li class="list-group-item">
+
+            ✅ Database connection established.
+
+        </li>
+
+        <li class="list-group-item">
+
+            ✅ Dashboard loaded successfully.
+
+        </li>
+
+    </ul>
+
+</div>
+
+{% endblock %}
