@@ -261,7 +261,7 @@ It reflects practical skills in **Machine Learning, Full-Stack Development, Data
 
 # 👨‍💻 Author
 
-### Karmveer Singh Sisodiya
+### Karmveer Singh Gehlot
 
 BCA (AI & Data Science)
 
