@@ -4,7 +4,7 @@
 
 ### Predict Customer Churn with Machine Learning & Interactive Analytics
 
-An end-to-end AI-powered web application that predicts whether a telecom customer is likely to churn using a trained Machine Learning model. The platform combines predictive analytics, interactive dashboards, secure authentication, and a premium user experience to help businesses identify at-risk customers before they leave. 
+An end-to-end AI-powered web application that predicts whether a telecom customer is likely to churn using a trained Machine Learning model. The platform combines predictive analytics, interactive dashboards, secure authentication, and a premium user experience to help businesses identify at-risk customers before they leave.
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python)
 ![Flask](https://img.shields.io/badge/Flask-Web_App-black?style=for-the-badge&logo=flask)
